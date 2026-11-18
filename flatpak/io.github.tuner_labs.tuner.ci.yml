@@ -3,12 +3,13 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-# CI manifest for tuner-gtk4: builds the app in the GNOME SDK (GTK4 is not in the plain freedesktop runtime; the GNOME
-# runtime is built on freedesktop), with libgee and libqrencode as modules like the Flatpak manifests. The workflow
-# checks tuner-core out into ../../core. Used by .github/workflows/ci.yml. The runtime version must match the
-# container image in the workflow (gnome-51 image = runtime 51).
+# CI manifest for tuner-gtk4. Same id and options as the Flathub release manifest next to it, but built from this
+# checkout and a tuner-core checkout (made by the workflow into ./core) instead of pinned git sources. It builds in
+# the GNOME SDK: GTK4 is not in the plain freedesktop runtime, and the GNOME runtime is built on freedesktop. libgee
+# and libqrencode are modules, as in the release manifest. Used by .github/workflows/ci.yml; the runtime version
+# must match the container image in the workflow (gnome-51 image = runtime 51).
 ---
-app-id: io.github.tuner_labs.tuner.gtk4
+app-id: io.github.tuner_labs.tuner
 runtime: org.gnome.Platform
 runtime-version: '51'
 sdk: org.gnome.Sdk
@@ -47,16 +48,17 @@ modules:
     config-opts:
       - --buildtype=debug
       - -Dpackaging=flatpak
+      - -Dapp_id=io.github.tuner_labs.tuner
     sources:
       - type: dir
-        path: ../..
+        path: ..
         skip:
           - .git
           - build
           - core
       - type: dir
         # The core, checked out by the workflow next to this repository's files
-        path: ../../core
+        path: ../core
         dest: subprojects/tuner-core
         skip:
           - .git

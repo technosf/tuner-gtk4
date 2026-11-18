@@ -24,7 +24,7 @@ on:
       - 'scripts/merge-po.sh'
       - 'data/**'
       - 'scripts/check-potfiles.sh'
-      - '.github/flatpak/**'
+      - 'flatpak/**'
       - '.github/workflows/ci.yml'
   pull_request:
     paths:
@@ -38,7 +38,7 @@ on:
       - 'scripts/merge-po.sh'
       - 'data/**'
       - 'scripts/check-potfiles.sh'
-      - '.github/flatpak/**'
+      - 'flatpak/**'
       - '.github/workflows/ci.yml'
   workflow_dispatch:
     inputs:
@@ -82,7 +82,7 @@ jobs:
       - name: Build
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          manifest-path: .github/flatpak/io.github.tuner_labs.tuner.gtk4.ci.yml
-          cache-key: flatpak-builder-gtk4-${{ hashFiles('.github/flatpak/*.yml') }}
+          manifest-path: flatpak/io.github.tuner_labs.tuner.ci.yml
+          cache-key: flatpak-builder-gtk4-${{ hashFiles('flatpak/*.yml') }}
           build-bundle: false
           upload-artifact: false

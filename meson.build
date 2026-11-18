@@ -5,7 +5,7 @@
 #
 
 # Tuner GTK4: an experimental presentation layer for the Tuner core (tuner-core). It uses only the core's public
-# API. It installs its launcher, metadata and icons for packaging (see ../tuner-flatpak).
+# API. It installs its launcher, metadata and icons for packaging (see flatpak/).
 project (
     'io.github.tuner_labs.tuner.gtk4',
     'vala', 'c',
@@ -29,7 +29,9 @@ if not core_version.version_compare ('>=' + core_minimum)
     error ('tuner-gtk4 needs tuner-core @0@ or newer, but found @1@'.format (core_minimum, core_version))
 endif
 
+app_id = get_option ('app_id')
 version_data = configuration_data ()
+version_data.set_quoted ('APP_ID', app_id)
 version_data.set_quoted ('APP_VERSION', meson.project_version ())
 version_data.set_quoted ('CORE_VERSION', core_version)
 version_data.set_quoted ('PACKAGING', get_option ('packaging'))
@@ -115,9 +117,14 @@ executable (
 # Installed for packaging (Flatpak, distribution packages): the launcher, the metadata and the icons.
 # The core's subproject installs the settings schema.
 # Translated with the po/extra catalogue
+desktop_in = configure_file (
+    input: 'data/tuner-gtk4.desktop.in',
+    output: 'tuner-gtk4.desktop.in',
+    configuration: {'APP_ID': app_id}
+)
 i18n.merge_file (
-    input: 'data/io.github.tuner_labs.tuner.gtk4.desktop.in',
-    output: 'io.github.tuner_labs.tuner.gtk4.desktop',
+    input: desktop_in,
+    output: app_id + '.desktop',
     po_dir: join_paths (meson.project_source_root (), 'po', 'extra'),
     type: 'desktop',
     install: true,
@@ -125,16 +132,17 @@ i18n.merge_file (
 )
 # The newest <release> takes its version from the project version (as in the GTK3 app), then the text is translated
 metainfo_versioned = configure_file (
-    input: 'data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in',
-    output: 'io.github.tuner_labs.tuner.gtk4.metainfo.xml.in',      # Keeps the name gettext's AppStream (ITS) rules look for
+    input: 'data/tuner-gtk4.metainfo.xml.in',
+    output: app_id + '.metainfo.xml.in',      # Keeps the name gettext's AppStream (ITS) rules look for
     configuration: {
+        'APP_ID': app_id,
         'VERSION': meson.project_version (),
         'VERSION_DATE': run_command ('date', '+%Y-%m-%d', check: true).stdout ().strip (),
     }
 )
 i18n.merge_file (
     input: metainfo_versioned,
-    output: 'io.github.tuner_labs.tuner.gtk4.metainfo.xml',
+    output: app_id + '.metainfo.xml',
     po_dir: join_paths (meson.project_source_root (), 'po', 'extra'),
     type: 'xml',
     install: true,
@@ -142,7 +150,7 @@ i18n.merge_file (
 )
 install_data ('data/icons/io.github.tuner_labs.tuner-scalable.svg',
     install_dir: get_option ('datadir') / 'icons/hicolor/scalable/apps',
-    rename: 'io.github.tuner_labs.tuner.gtk4.svg')
+    rename: app_id + '.svg')
 install_data ('data/icons/io.github.tuner_labs.tuner-symbolic.svg',
     install_dir: get_option ('datadir') / 'icons/hicolor/symbolic/apps',
-    rename: 'io.github.tuner_labs.tuner.gtk4-symbolic.svg')
+    rename: app_id + '-symbolic.svg')

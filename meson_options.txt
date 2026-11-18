@@ -1,3 +1,5 @@
+option('app_id', type: 'string', value: 'io.github.tuner_labs.tuner.gtk4',
+       description: 'Application id: names the .desktop, metainfo and icons, and is the D-Bus/GSettings-state id. Default is the development id, which installs beside the GTK3 app; the Flathub build sets io.github.tuner_labs.tuner.')
 option('packaging', type: 'string', value: '',
        description: 'How this build is packaged, sent in the User-Agent: deb, rpm, aur, nix, flatpak, snap, appimage, homebrew, msi, dmg ... Empty: detected at run time (flatpak, snap, appimage) or "source".')
 option('language_selector', type: 'boolean', value: false,

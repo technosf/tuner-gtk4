@@ -8,12 +8,11 @@ SPDX-FileCopyrightText: 2024 <https://github.com/technosf>
 SPDX-License-Identifier: GPL-3.0-or-later
 -->
 
-<!-- Copied from the GTK3 app's metainfo (screenshots, content rating and release history kept). This is the
-     development id of the GTK4 app: at the repository rename it becomes io.github.tuner_labs.tuner again
-     (id, launchable, binary, icon). -->
+<!-- Copied from the GTK3 app's metainfo (screenshots, content rating and release history kept). @APP_ID@ is the
+     meson option app_id: io.github.tuner_labs.tuner for the Flathub build, the .gtk4 development id by default. -->
 <component type="desktop-application">
 
-  <id>io.github.tuner_labs.tuner.gtk4</id>
+  <id>@APP_ID@</id>
 
   <metadata_license>FSFAP</metadata_license>
   <project_license>GPL-3.0+</project_license>
@@ -37,7 +36,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
     </ul>
   </description>
 
-  <launchable type="desktop-id">io.github.tuner_labs.tuner.gtk4.desktop</launchable>
+  <launchable type="desktop-id">@APP_ID@.desktop</launchable>
 
 
   <provides>
@@ -49,7 +48,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
 
   <!-- Categories and Keywords are pulled from the Desktop file -->
 
-  <icon type="stock">io.github.tuner_labs.tuner.gtk4</icon>
+  <icon type="stock">@APP_ID@</icon>
 
   <branding>
     <color type="primary" scheme_preference="light">#62A0EA</color>

@@ -10,9 +10,6 @@
 
 namespace TunerGtk4
 {
-    /** Own application id, so the prototype keeps its own data and can be installed beside the GTK3 app. */
-    public const string APP_ID = "io.github.tuner_labs.tuner.gtk4";
-
     /**
      * @class App
      * @brief Creates the core, shows the main window, and answers the few requests the core makes (Host).

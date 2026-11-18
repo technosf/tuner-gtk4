@@ -10,6 +10,8 @@
 
 namespace TunerGtk4
 {
+    /** Application id (meson option `app_id`) */
+    public const string APP_ID = @APP_ID@;
     public const string APP_VERSION = @APP_VERSION@;
     public const string BUILT_WITH_CORE_VERSION = @CORE_VERSION@;
     /** How this build was packaged (meson option `packaging`); empty to detect it at run time */
