@@ -3,9 +3,10 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-# Check-build of tuner-gtk4 in the freedesktop 26.08 SDK (the platform the app ships on), against the tuner-core
-# repository of the same owner (main branch, or the ref chosen when started by hand). The SDK is already in the
-# container image, so only libgee and libqrencode are built (and cached). Runs when Vala sources, translation lists
+# Check-build of tuner-gtk4 in the GNOME SDK (GTK4 is not in the plain freedesktop runtime; the GNOME runtime is built
+# on it), against the tuner-core repository of the same owner (main branch, or the ref chosen when started by hand).
+# The SDK is already in the container image, so only libgee and libqrencode are built (and cached).
+# The image and runtime-version in the manifest must be changed together when GNOME moves on. Runs when Vala sources, translation lists
 # or build files change (and by hand from the Actions tab).
 
 name: CI
@@ -55,11 +56,11 @@ concurrency:
 
 jobs:
   build:
-    name: Build (freedesktop 26.08)
+    name: Build (GNOME 51 SDK)
     runs-on: ubuntu-latest
     timeout-minutes: 45
     container:
-      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-26.08
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-51
       options: --privileged
     steps:
       - name: Check out tuner-gtk4

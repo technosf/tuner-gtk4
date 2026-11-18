@@ -3,13 +3,15 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-# CI manifest for tuner-gtk4: builds the app in the freedesktop 26.08 SDK, the platform it ships on, with the same
-# modules as the Flatpak manifests. The workflow checks tuner-core out into ../../core. Used by .github/workflows/ci.yml.
+# CI manifest for tuner-gtk4: builds the app in the GNOME SDK (GTK4 is not in the plain freedesktop runtime; the GNOME
+# runtime is built on freedesktop), with libgee and libqrencode as modules like the Flatpak manifests. The workflow
+# checks tuner-core out into ../../core. Used by .github/workflows/ci.yml. The runtime version must match the
+# container image in the workflow (gnome-51 image = runtime 51).
 ---
 app-id: io.github.tuner_labs.tuner.gtk4
-runtime: org.freedesktop.Platform
-runtime-version: '26.08'
-sdk: org.freedesktop.Sdk
+runtime: org.gnome.Platform
+runtime-version: '51'
+sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.vala
 command: tuner-gtk4
