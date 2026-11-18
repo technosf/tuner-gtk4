@@ -1,0 +1,164 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-17 15:53-0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/io.github.tuner_labs.tuner.gtk4.desktop.in:9
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:21
+msgid "Tuner"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.desktop.in:10
+msgid "Internet streaming radio music player"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.desktop.in:11
+msgid "Listen to Radio Stations from around the world"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.desktop.in:16
+msgid "Radio;Receiver;FM;Music;Talk;Sport;News"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:26
+msgid "Discover, stream, save your favorite Internet radio station"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:28
+msgid ""
+"Make finding and listening to Internet radio station and music fun again!"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:29
+msgid ""
+"Instead of showing all the stations you already know, Tuner presents you a "
+"new selection of stations from all over the world every time you hit the "
+"Shuffle button."
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:32
+msgid "Tuner uses the community-driven station catalog radio-browser.info."
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:34
+msgid "Discover new stations every day"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:35
+msgid "Star stations you like and visit their website"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:36
+msgid "Control Tuner from your volume indicator"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:80
+msgid "Tuner with light theme, Discover"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:84
+msgid "Tuner history and favorite tracks"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:88
+msgid "Tuner Jukebox playing, looking at saved search"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:92
+msgid "Tuner offline"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:96
+msgid "Tuner search bar"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:100
+msgid "Tuner starred stations with the preferences menu open"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:104
+msgid "Tuner showing trending stations"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:108
+msgid "Tuner with the dark theme"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:116
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:130
+msgid "Feature release:"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:118
+msgid "Station streams sharable via QR Code"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:119
+msgid "Right Clicking tracks in History offers MusicBrainz Search"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:120
+msgid "Hearted tracks can be saved for All Time"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:121
+msgid "Add notes on Starred Stations"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:122
+msgid "MPRIS implementation improved"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:123
+msgid "Preferences enhanced"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:132
+msgid "Station change crossfade added"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:133
+msgid "History view revamped"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:134
+msgid "Icon animations added"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:135
+msgid "Networking improvements"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:136
+msgid "Refactored audio player and removed use of deprecated GstPlayer"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:137
+msgid "Refactored metadata processing and title transitions"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:138
+msgid "Jingle preferences added"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:139
+msgid "Translations updated and expanded"
+msgstr ""
+
+#: data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in:140
+msgid "Updated freedesktop platform from 25.08 to 26.08"
+msgstr ""

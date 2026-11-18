@@ -1,0 +1,17 @@
+/**
+ * SPDX-FileCopyrightText: Copyright © 2026 technosf <https://github.com/technosf>
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ *
+ * @file Version.vala.in
+ *
+ * @brief The versions this build reports: the app's own, and the core's it was built with. Filled in by meson.
+ */
+
+namespace TunerGtk4
+{
+    public const string APP_VERSION = @APP_VERSION@;
+    public const string BUILT_WITH_CORE_VERSION = @CORE_VERSION@;
+    /** How this build was packaged (meson option `packaging`); empty to detect it at run time */
+    public const string PACKAGING = @PACKAGING@;
+}

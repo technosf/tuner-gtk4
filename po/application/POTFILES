@@ -1,0 +1,19 @@
+# Copyright © 2026 <https://github.com/technosf>
+# SPDX-FileCopyrightText: © 2026 <https://github.com/technosf>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+src/App.vala
+src/windows/MainWindow.vala
+src/windows/MetadataImagePopup.vala
+src/windows/NoteWindow.vala
+src/windows/PreferencesWindow.vala
+src/windows/ShareStreamWindow.vala
+src/widgets/AnimatedIcons.vala
+src/widgets/HistoryButton.vala
+src/widgets/NowPlaying.vala
+src/widgets/StationRow.vala
+subprojects/tuner-core/src/Models/History.vala
+subprojects/tuner-core/src/Models/Station.vala
+subprojects/tuner-core/src/Models/StreamMetadata.vala

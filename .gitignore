@@ -1,1 +1,18 @@
+# Copyright © 2026 <https://github.com/technosf>
+# SPDX-FileCopyrightText: © 2026 <https://github.com/technosf>
 #
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+
+/build/
+/build.log
+*.log
+*~
+.vscode
+__pycache__/
+
+# The core checkout (a symbolic link while developing, or a fetched wrap)
+/subprojects/tuner-core
+/subprojects/packagecache/
+CLAUDE.md
+.claude/

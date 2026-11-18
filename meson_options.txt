@@ -1,0 +1,9 @@
+option('packaging', type: 'string', value: '',
+       description: 'How this build is packaged, sent in the User-Agent: deb, rpm, aur, nix, flatpak, snap, appimage, homebrew, msi, dmg ... Empty: detected at run time (flatpak, snap, appimage) or "source".')
+option('language_selector', type: 'boolean', value: false,
+       description: 'Show the language selector in Preferences. Always on in local debug builds (debug buildtype, prefix not /app); this enables it elsewhere, e.g. the development Flatpak.')
+option('translation',
+       type: 'combo',
+       choices: ['update', 'none'],
+       value: 'none',
+       description: 'Translation build mode (update: the .pot files are regenerated with meson compile application-pot, countries-pot, extra-pot)')

@@ -1,0 +1,13 @@
+version = 1
+
+[[annotations]]
+path = ["scripts/**", "po/**.md", "src/**.vala", "subprojects/*.md", "subprojects/*.example", "doc/**.md", "README.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Copyright © 2026 technosf <https://github.com/technosf>"
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+[[annotations]]
+path = ["po/**.po", "po/**.pot"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Copyright © 2026 technosf <https://github.com/technosf>"
+SPDX-License-Identifier = "GPL-3.0-or-later"

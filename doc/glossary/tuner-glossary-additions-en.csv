@@ -1,0 +1,10 @@
+source,target,context,note
+Stream,Stream,,The audio feed of a station that Tuner plays.
+Directory,Directory,,The online catalogue of stations (radio-browser) that Tuner connects to.
+Star,Star,,To mark a station as a favourite. Unstar reverses it. Related: Starred.
+Hearted,Hearted,,A track the user marked with a heart while it played.
+Heart,Heart,,To mark the playing track as a favourite. The ♥ symbol is kept.
+All Time,All Time,,"The list of hearted tracks kept permanently, across sessions."
+Stream info,Stream info,,"The title, artist and other details a station sends about what it is playing."
+Metadata,Metadata,,"Data sent with a stream, such as the track title and images. Related: Stream Metadata."
+Share stream URI,Share stream URI,,"Offer a station's stream address to others, as text or a QR code."
