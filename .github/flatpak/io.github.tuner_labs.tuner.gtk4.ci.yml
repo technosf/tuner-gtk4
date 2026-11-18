@@ -1,0 +1,61 @@
+# Copyright © 2026 <https://github.com/technosf>
+# SPDX-FileCopyrightText: © 2026 <https://github.com/technosf>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+#
+# CI manifest for tuner-gtk4: builds the app in the freedesktop 26.08 SDK, the platform it ships on, with the same
+# modules as the Flatpak manifests. The workflow checks tuner-core out into ../../core. Used by .github/workflows/ci.yml.
+---
+app-id: io.github.tuner_labs.tuner.gtk4
+runtime: org.freedesktop.Platform
+runtime-version: '26.08'
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.vala
+command: tuner-gtk4
+
+build-options:
+  prepend-path: /usr/lib/sdk/vala/bin/
+  prepend-ld-library-path: /usr/lib/sdk/vala/lib
+
+modules:
+  - name: libgee
+    buildsystem: autotools
+    build-options:
+      cflags: -Wno-error=incompatible-pointer-types
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libgee/0.20/libgee-0.20.8.tar.xz
+        sha256: 189815ac143d89867193b0c52b7dc31f3aa108a15f04d6b5dca2b6adfad0b0ee
+
+  - name: libqrencode
+    # Same source as the freedesktop-sdk libqrencode.bst; no command-line tool, no tests
+    buildsystem: autotools
+    config-opts:
+      - --without-tools
+      - --without-tests
+    sources:
+      - type: git
+        url: https://github.com/fukuchi/libqrencode.git
+        tag: v4.1.1
+        commit: 715e29fd4cd71b6e452ae0f4e36d917b43122ce8
+
+  - name: tuner-gtk4
+    buildsystem: meson
+    config-opts:
+      - --buildtype=debug
+      - -Dpackaging=flatpak
+    sources:
+      - type: dir
+        path: ../..
+        skip:
+          - .git
+          - build
+          - core
+      - type: dir
+        # The core, checked out by the workflow next to this repository's files
+        path: ../../core
+        dest: subprojects/tuner-core
+        skip:
+          - .git
+          - build

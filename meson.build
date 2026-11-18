@@ -48,7 +48,11 @@ fs = import ('fs')
 ##
 po_script = join_paths (meson.project_source_root (), 'scripts', 'merge-po.sh')
 if fs.exists (po_script)
-    run_command (po_script, check: true)        # application + countries .po merged into po/<lang>.po, po/LINGUAS written
+    # application + countries .po merged into po/<lang>.po, po/LINGUAS written. On failure show what the script said
+    merged = run_command (po_script, check: false)
+    if merged.returncode () != 0
+        error ('merge-po.sh failed (status @0@):\n@1@\n@2@'.format (merged.returncode (), merged.stdout (), merged.stderr ()))
+    endif
 endif
 add_project_arguments (
     '-DGETTEXT_PACKAGE="@0@"'.format ('io.github.tuner_labs.tuner'),    # One domain for the app and the core

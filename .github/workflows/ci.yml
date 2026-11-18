@@ -3,9 +3,10 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
-# Check-build of tuner-gtk4 against the tuner-core repository of the same owner (main branch): the core is checked
-# out as subprojects/tuner-core, as on a developer machine. Runs when Vala sources, translation lists or build files
-# change (and by hand from the Actions tab). Ubuntu 24.04 packages, as on Mint 22.
+# Check-build of tuner-gtk4 in the freedesktop 26.08 SDK (the platform the app ships on), against the tuner-core
+# repository of the same owner (main branch, or the ref chosen when started by hand). The SDK is already in the
+# container image, so only libgee and libqrencode are built (and cached). Runs when Vala sources, translation lists
+# or build files change (and by hand from the Actions tab).
 
 name: CI
 
@@ -18,8 +19,11 @@ on:
       - '**/meson.build'
       - 'meson_options.txt'
       - 'po/**/POTFILES'
+      - 'po/**/LINGUAS'
+      - 'scripts/merge-po.sh'
       - 'data/**'
       - 'scripts/check-potfiles.sh'
+      - '.github/flatpak/**'
       - '.github/workflows/ci.yml'
   pull_request:
     paths:
@@ -29,8 +33,11 @@ on:
       - '**/meson.build'
       - 'meson_options.txt'
       - 'po/**/POTFILES'
+      - 'po/**/LINGUAS'
+      - 'scripts/merge-po.sh'
       - 'data/**'
       - 'scripts/check-potfiles.sh'
+      - '.github/flatpak/**'
       - '.github/workflows/ci.yml'
   workflow_dispatch:
     inputs:
@@ -48,9 +55,12 @@ concurrency:
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    name: Build (freedesktop 26.08)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-26.08
+      options: --privileged
     steps:
       - name: Check out tuner-gtk4
         uses: actions/checkout@v4
@@ -62,30 +72,16 @@ jobs:
           ref: ${{ inputs.core_ref || 'main' }}
           path: core
 
-      - name: Link the core as a subproject
-        run: ln -sfn "$GITHUB_WORKSPACE/core" subprojects/tuner-core
-
-      - name: Install build dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            valac meson ninja-build pkg-config gettext python3 libglib2.0-bin \
-            libglib2.0-dev libgee-0.8-dev libgstreamer1.0-dev \
-            libsoup-3.0-dev libjson-glib-dev \
-            libgtk-4-dev librsvg2-dev libqrencode-dev
-
       - name: Translation lists are complete
-        run: scripts/check-potfiles.sh
+        run: |
+          ln -sfn "$GITHUB_WORKSPACE/core" subprojects/tuner-core
+          scripts/check-potfiles.sh
+          rm subprojects/tuner-core
 
-      - name: Configure
-        run: meson setup build --buildtype=debug
-
-      - name: Compile
-        run: meson compile -C build
-
-      - name: Keep the logs when something failed
-        if: failure()
-        uses: actions/upload-artifact@v4
+      - name: Build
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
-          name: meson-logs
-          path: build/meson-logs/
+          manifest-path: .github/flatpak/io.github.tuner_labs.tuner.gtk4.ci.yml
+          cache-key: flatpak-builder-gtk4-${{ hashFiles('.github/flatpak/*.yml') }}
+          build-bundle: false
+          upload-artifact: false
