@@ -28,7 +28,11 @@ namespace TunerGtk4
 
         public App ()
         {
-            Object (application_id: APP_ID, flags: ApplicationFlags.FLAGS_NONE);
+            // GTK finds icons by name (tuner:...) under the application's resource base path. That is normally derived from the
+            // application id, which now varies (app_id), so it is fixed here to where data/tuner-gtk4.gresource.xml puts them
+            Object (application_id: APP_ID,
+                    resource_base_path: "/io/github/tuner_labs/tuner/gtk4",
+                    flags: ApplicationFlags.FLAGS_NONE);
         }
 
 

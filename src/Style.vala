@@ -53,6 +53,11 @@ tooltip label { color: white; }
 .drop-over { background-color: alpha(@theme_selected_bg_color, 0.35); border-radius: 6px; }
 .station-list > child, .station-list > child:focus, .station-list > child:hover,
 .station-list > child:selected { outline: none; box-shadow: none; background: transparent; padding: 0 4px; }
+/* The row height is set here, not left to the theme: the desktop theme (Yaru, say) adds space around grid items that the
+   Flatpak's Adwaita does not, which crowded the rows there. 74px is the 48px picture with room above and below. */
+.station-list { padding: 0; margin-top: 0; margin-bottom: 0; }
+.station-list > child { margin: 0; min-height: 0; border: 0 solid transparent; border-radius: 0; }
+.station-button { min-height: 74px; margin-top: 0; margin-bottom: 0; }   /* a desktop theme can add 12px above and below */
 /* Hover, as in the GTK3 app: the border shows, then the background lights, then the border fades away */
 @keyframes station-pop {
   0%   { background-color: alpha(currentColor, 0);    border-color: alpha(currentColor, 0.45); }
@@ -63,6 +68,9 @@ tooltip label { color: white; }
                   border: 1px solid transparent; transition: background-color 250ms ease, border-color 250ms ease; }
 .station-button:hover { background-color: alpha(currentColor, 0.08); animation: station-pop 700ms ease-out; }
 .station-button image.station-icon { background-color: alpha(black, 0.25); margin-right: 5px; min-width: 48px; }
+/* Behind a transparent picture: half as strong in the light theme, where the dark grey is too heavy.
+   The window carries scheme-light while the theme is light (see MainWindow.update_scheme_class) */
+.scheme-light .station-button image.station-icon { background-color: alpha(black, 0.125); }
 
 /* The station right-click menu */
 popover.station-menu > contents { padding: 8px 0; border-radius: 4px; border: 1px solid black; }

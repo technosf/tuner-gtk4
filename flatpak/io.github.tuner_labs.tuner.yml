@@ -27,6 +27,7 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
+  - --device=dri # GPU rendering (without it Mesa logs errors and GTK draws in software)
   - --share=network
   - --socket=pulseaudio
   - --filesystem=xdg-desktop # Playlist import export

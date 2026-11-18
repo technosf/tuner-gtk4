@@ -16,3 +16,8 @@ __pycache__/
 /subprojects/packagecache/
 CLAUDE.md
 .claude/
+
+# Flatpak: builder state and bundles (the scripts build into build/, which is ignored above)
+.flatpak-builder/
+/repo/
+*.flatpak

@@ -129,7 +129,35 @@ namespace TunerGtk4
                 _app.core.quit_cleanly ("window closed");
                 return true;
             });
+
+            // The CSS cannot ask whether the theme is light (older GTK has no media query for it), so the window says so
+            map.connect (update_scheme_class);
+            var gtk_settings = Gtk.Settings.get_default ();
+            gtk_settings.notify.connect (() =>
+            {
+                if (_scheme_check == 0)
+                    _scheme_check = Idle.add (() =>
+                    {
+                        _scheme_check = 0;
+                        update_scheme_class ();
+                        return Source.REMOVE;
+                    });
+            });
         } // MainWindow
+
+
+        private uint _scheme_check = 0;
+
+        /** Marks the window scheme-light when its text is dark (a light theme), for CSS that differs between light and dark. */
+        private void update_scheme_class ()
+        {
+            Gdk.RGBA text = get_color ();
+            bool light = (0.299 * text.red + 0.587 * text.green + 0.114 * text.blue) < 0.5;
+            if (light)
+                add_css_class ("scheme-light");
+            else
+                remove_css_class ("scheme-light");
+        } // update_scheme_class
 
 
         // ----------------------------------------------------------

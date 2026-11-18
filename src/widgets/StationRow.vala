@@ -113,6 +113,7 @@ namespace TunerGtk4
             var grid = new Gtk.Grid ();
             grid.column_spacing = 6;
             grid.hexpand = true;
+            grid.valign = Gtk.Align.CENTER;      // centred in the row, which has a minimum height (see Style.vala)
             grid.attach (_icon, 0, 0, 1, 2);
             grid.attach (_title, 1, 0, 2, 1);
             grid.attach (_tag, 1, 1, 1, 1);
@@ -461,12 +462,30 @@ namespace TunerGtk4
                 return;
             }
 
+            // Decoded the way the core's check and the now-playing icon do (Gdk.Texture): Gtk.Image.set_from_file uses
+            // gdk-pixbuf, which cannot read every format the texture loader can, and then shows nothing
+            Gdk.Texture? texture = null;
+            try
+            {
+                texture = Gdk.Texture.from_filename (path);
+            } catch (Error e)
+            {
+                debug ("favicon %s: %s", path, e.message);
+            }
+            if (texture == null)
+            {
+                Fade.cancel (_icon);
+                _icon.icon_name = "tuner:internet-radio";
+                _icon.opacity = 1.0;
+                return;
+            }
+
             var shown = station;
             Fade.to (_icon, 0.0, fade_swap ? FADE_MS : 0, () =>
             {
                 if (station != shown)       // The row was rebound while it faded
                     return;
-                _icon.set_from_file (path);
+                _icon.set_from_paintable (texture);
                 Fade.to (_icon, 1.0, FADE_MS);
             });
         } // show_favicon
