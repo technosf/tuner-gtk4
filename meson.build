@@ -126,7 +126,7 @@ i18n.merge_file (
 # The newest <release> takes its version from the project version (as in the GTK3 app), then the text is translated
 metainfo_versioned = configure_file (
     input: 'data/io.github.tuner_labs.tuner.gtk4.metainfo.xml.in',
-    output: 'io.github.tuner_labs.tuner.gtk4.metainfo.versioned.xml.in',
+    output: 'io.github.tuner_labs.tuner.gtk4.metainfo.xml.in',      # Keeps the name gettext's AppStream (ITS) rules look for
     configuration: {
         'VERSION': meson.project_version (),
         'VERSION_DATE': run_command ('date', '+%Y-%m-%d', check: true).stdout ().strip (),
